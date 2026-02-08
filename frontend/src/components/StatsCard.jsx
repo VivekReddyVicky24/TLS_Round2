@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 export default function StatsCard() {
   const [stats, setStats] = useState(null);
   const [blocked, setBlocked] = useState(false);
@@ -8,7 +10,7 @@ export default function StatsCard() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/stats", {
+        const res = await fetch(`${API_BASE}/api/stats`, {
           headers: {
             "x-user-id": "69876e1b50a617bdce92d4a3"
           }

@@ -10,13 +10,14 @@ import ViewSolution from "../components/ViewSolution";
 import StatsCard from "../components/StatsCard";
 
 export default function QOTD() {
+  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchQOTD = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/qotd");
+        const res = await fetch(`${API_BASE}/api/qotd`);
         const data = await res.json();
         setQuestion(data);
       } catch (err) {

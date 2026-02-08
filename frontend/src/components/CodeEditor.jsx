@@ -28,6 +28,7 @@ const TEMPLATES = {
 };
 
 export default function CodeEditor({ question }) {
+  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const [language, setLanguage] = useState("JavaScript");
   const [code, setCode] = useState(TEMPLATES.JavaScript);
   const [isRunning, setIsRunning] = useState(false);
@@ -45,7 +46,7 @@ export default function CodeEditor({ question }) {
       setIsRunning(true);
       setShowResults(true);
 
-      const res = await fetch("http://localhost:5000/api/run", {
+      const res = await fetch(`${API_BASE}/api/run`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +94,7 @@ export default function CodeEditor({ question }) {
       setIsRunning(true);
       setShowResults(true);
 
-      const res = await fetch("http://localhost:5000/api/submit", {
+      const res = await fetch(`${API_BASE}/api/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

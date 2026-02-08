@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Trophy, Medal, Award } from "lucide-react";
 
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 export default function Leaderboard({ difficulty }) {
   const user = { type: "PAID" }; // change to FREE to test
 
@@ -14,7 +16,7 @@ export default function Leaderboard({ difficulty }) {
       return;
     }
 
-    fetch(`http://localhost:5000/api/leaderboard?difficulty=${difficulty}`)
+    fetch(`${API_BASE}/api/leaderboard?difficulty=${difficulty}`)
       .then((res) => res.json())
       .then((data) => {
         setLeaders(data || []);

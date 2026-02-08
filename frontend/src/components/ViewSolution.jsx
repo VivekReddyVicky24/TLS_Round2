@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 export default function ViewSolution({ questionId }) {
   const [solution, setSolution] = useState(null);
   const [error, setError] = useState("");
@@ -12,7 +14,7 @@ export default function ViewSolution({ questionId }) {
       setError("");
 
       const res = await fetch(
-        `http://localhost:5000/api/solution/${questionId}`,
+        `${API_BASE}/api/solution/${questionId}`,
         {
           headers: {
             "x-user-id": "mock-user-id" // 🔐 mock user for Round-2
